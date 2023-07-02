@@ -23,6 +23,41 @@ export default function App()
 {
   const [data , setData] = useState([{}])
 
+  function deletetask(task_id)
+  {
+    // delete task id 
+    fetch("/delete_task", {
+      method: 'POST',
+      body: JSON.stringify({
+        "taskid" : task_id
+      }),
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+      },
+    }).then(
+      res => res.json()
+    ).then(
+      data => {
+        setData(data)
+        console.log(data)
+        
+        // update tasks
+        fetch("/info").then(
+          res => res.json()
+        ).then(
+          data => {
+            setData(data)
+            console.log(data)
+          }
+        )
+      }
+    ).catch((err) => {
+      console.log(err.message);
+   });
+
+    
+  }
+
   useEffect(() => {
     fetch("/info").then(
       res => res.json()
@@ -49,7 +84,7 @@ export default function App()
 
       <Box
          w='100%'
-         h='1000px'
+         h='700px'
          bgGradient='linear(to-b, orange.100, purple.300)'
       >
 
@@ -95,9 +130,8 @@ export default function App()
 
                     data.taskdata.map((member , i) => (
                       <Tr>
-                        <Td>{member.id}</Td>
+                        <Td>{i}</Td>
                         <Td>{member.name}</Td>
-
                         { 
                          (member.status == 'true') ?
                          (
@@ -107,6 +141,8 @@ export default function App()
                             _hover={{
                               color:'green.300' 
                             }}
+                            value = {member.id}
+                            onClick= {() => deletetask(member.id)}
                           />
                          )
                           :                        
