@@ -36,7 +36,7 @@ def delete_task():
     data = request.get_json()
     tid = data["taskid"]
 
-    ### insert into database
+    ### delete into database
     ### print(tname , pty )
     
     print("Task Id : " , tid)
