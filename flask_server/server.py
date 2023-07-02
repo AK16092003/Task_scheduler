@@ -1,9 +1,16 @@
 from flask import Flask
 app = Flask(__name__)
 
-@app.route("/members")
-def members():
-    return {"members" : ["M15" , "M2" , "M3"]}
+@app.route("/info")
+def info():
+    return {
+            "taskdata" :
+            [
+                {"id": 1, "name": 'Brush your teeth', "status": 'true'},
+                {"id": 2, "name": 'Take Bath', "status": 'true'},
+                {"id": 3, "name": 'Do Competitive Coding' , "status": 'false'}
+            ]
+    }
 
 if __name__ == "__main__":
     app.run(debug = True)
