@@ -1,7 +1,7 @@
 from flask import Flask,request
 import mysql.connector as mysql
 
-mydb = mysql.connect(host = "localhost",user = "root" , passwd = "Pettaashu2003",  database = "task_schedule")
+mydb = mysql.connect(host = "localhost",user = "root" , passwd = "password",  database = "task_schedule")
 cur = mydb.cursor()
 print(mydb)
 
