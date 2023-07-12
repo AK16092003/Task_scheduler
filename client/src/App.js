@@ -34,16 +34,16 @@ import {
   TableCaption,
   TableContainer,
 } from '@chakra-ui/react'
-
 import { useBetween } from 'use-between';
 
 const useShareableState = () => {
-  
-  const [data , setData] = useState([{}])
+
+  const [data , setData] = useState([{}])  
   return {
     data,
     setData
   }
+  
 }
 
 export default function App()
@@ -124,6 +124,7 @@ export default function App()
             <Tr>
               <Th>SNo.</Th>
               <Th>Task Name</Th>
+              <Th>Deadline</Th>
               <Th>Priority</Th>
               <Th padding = '0'>Check Here</Th>
             </Tr>
@@ -131,6 +132,13 @@ export default function App()
 
                 {(typeof data.taskdata  === 'undefined' ) ? (
                   <Tr>
+                    <Td>
+                      <Stack>
+                          <Skeleton height='20px' />
+                          <Skeleton height='20px' />
+                          <Skeleton height='20px' />
+                      </Stack>
+                    </Td>
                     <Td>
                       <Stack>
                           <Skeleton height='20px' />
@@ -168,6 +176,7 @@ export default function App()
                         <Tr backgroundColor = 'red.200'>
                           <Td>{i+1}</Td>
                           <Td>{member.name}</Td>
+                          <Td>{member.deadline}</Td>
                           <Td>{member.priority}</Td>
                           <Td>
                           { 
@@ -191,6 +200,7 @@ export default function App()
             
                                     <Td>{i+1}</Td>
                                     <Td>{member.name}</Td>
+                                    <Td>{member.deadline}</Td>
                                     <Td>{member.priority}</Td>
                                     <Td>
                                     { 
@@ -211,6 +221,7 @@ export default function App()
                                       <Tr backgroundColor = 'green.200'>
                                           <Td>{i+1}</Td>
                                           <Td>{member.name}</Td>
+                                          <Td>{member.deadline}</Td>
                                           <Td>{member.priority}</Td>
                                           <Td>
                                           { 
@@ -251,8 +262,11 @@ function AddNewTask()
     const {data , setData} = useBetween(useShareableState)
 
     const { isOpen, onOpen, onClose } = useDisclosure()  
+    
     const [task_name_input, setValue1] = useState("")
     const [priority_input , setValue2] = useState("")
+    const [deadline , setValue3] = useState("")
+    
     const initialRef = React.useRef(null)
     const finalRef = React.useRef(null)
     const toast = useToast()
@@ -267,7 +281,8 @@ function AddNewTask()
             body: JSON.stringify({
               // Add parameters here
               "taskname" : task_name_input,
-              "priority" : priority_input
+              "priority" : priority_input,
+              "deadline" : deadline
             }),
             headers: {
               'Content-type': 'application/json; charset=UTF-8',
@@ -340,6 +355,19 @@ function AddNewTask()
                     <option value='Medium'>Medium</option>
                     <option value='High'>High</option>
                     </Select>
+                  </FormControl>
+
+                  <FormControl mt={4}>
+                  <FormLabel>Deadline</FormLabel>
+
+                  <Input
+                    placeholder="Select Date and Time"
+                    size="md"
+                    type="datetime-local" 
+                    value={deadline}
+                    onChange = {(e)=>setValue3(e.target.value)}
+                    />
+
                   </FormControl>
                 </ModalBody>
       

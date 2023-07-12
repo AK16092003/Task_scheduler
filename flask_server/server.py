@@ -12,7 +12,7 @@ app = Flask(__name__)
 @app.route("/info")
 def info():
 
-    cur.execute("SELECT * from  info where status = 0  ORDER BY FIELD(Priority,'high','medium','low') ")
+    cur.execute("SELECT * from  info where status = 0  ORDER BY FIELD(Priority,'high','medium','low'),deadline ")
     result = cur.fetchall()
 
     data = []
@@ -21,6 +21,7 @@ def info():
         curdata["id"] = val[0]
         curdata["name"] = val[1]
         curdata["priority"] = val[2]  
+        curdata["deadline"] = val[4]  
         data.append(curdata)
 
     return {
@@ -32,6 +33,7 @@ def add_task():
     data = request.get_json()
     tname = data["taskname"]
     pty = data["priority"]
+    ddl = data["deadline"]
 
     ### insert into database
     ### print(tname , pty )
@@ -41,7 +43,7 @@ def add_task():
     LEN = len(result)
 
     try:
-        cur.execute(" insert into info values({},'{}','{}',0);".format(LEN+1 , tname , pty))
+        cur.execute(" insert into info values({},'{}','{}',0,'{}');".format(LEN+1 , tname , pty,ddl))
         mydb.commit()
     except:
         return{
@@ -59,8 +61,6 @@ def delete_task():
     tid = data["taskid"]
 
     ### delete into database
-    ### print(tname , pty )
-
 
     cur.execute("update info set status = 1 where taskid = {};".format(tid))
     mydb.commit()
