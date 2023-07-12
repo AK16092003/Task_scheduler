@@ -1,6 +1,6 @@
 # Task Scheduler
 - Tech stack used:
-- ReactJs, Flask, MySQL
+- ReactJs, Flask, MySQL Database
 - This is an extended version of to-do list which allows to set priorities and deadlines to the task.
 - This is my first react project integrating front end and back end. I hope my learning will go on forever.
 
