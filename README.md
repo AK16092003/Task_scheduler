@@ -1,4 +1,4 @@
-# Task_scheduler
+# Task Scheduler
 - Tech stack used:
 - ReactJs, Flask, MySQL
 - This is an extended version of to-do list which allows to set priorities and deadlines to the task.
