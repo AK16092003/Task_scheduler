@@ -8,6 +8,6 @@
 <img width="947" alt="image" src="https://github.com/AK16092003/Task_scheduler/assets/97865565/1a17c66e-50e6-4695-a01a-bcb1b75419b3">
 <img width="946" alt="image" src="https://github.com/AK16092003/Task_scheduler/assets/97865565/7bf59133-85eb-44af-9bbb-69ed1e9c38d1">
 
-### database structure:
+### Database Structure:
 <img width="449" alt="image" src="https://github.com/AK16092003/Task_scheduler/assets/97865565/7e4848a3-b09c-41f3-bb3e-bf18a819191d">
 
